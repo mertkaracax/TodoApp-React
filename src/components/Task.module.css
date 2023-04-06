@@ -1,0 +1,80 @@
+.task {
+  margin: auto;
+  display: flex;
+  margin-top: 1rem;
+  box-shadow: 0 0 1px 1px #80808051;
+  padding: 2em;
+  width: 60vw;
+  align-items: center;
+  animation: slide-down 300ms ease-out forwards;
+  transition: 1000ms;
+}
+
+.taskAvatar {
+  background-color: #1da1f2;
+  border-radius: 50%;
+  height: 3rem;
+  margin-right: 1rem;
+  width: 3rem;
+}
+
+.taskContent {
+  flex: 1;
+}
+
+.taskHeader {
+  display: flex;
+  align-items: center;
+}
+
+.taskAuthor {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.taskTimestamp {
+  color: #657786;
+}
+
+.taskText {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.taskActions {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.taskAction {
+  color: #657786;
+  margin-right: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.taskAction:hover {
+  color: #1da1f2;
+}
+
+@media (max-width: 1000px) {
+  .task {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 1300px) {
+  .task {
+    width: 80vw;
+  }
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
