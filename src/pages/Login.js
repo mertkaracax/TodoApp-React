@@ -1,23 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import classes from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/user";
 import Modal from "../UI/Modal";
+import { uiActions } from "../store/ui";
 
 function Login() {
   const navigate = useNavigate(); // For navigating between secreens
 
   const dispatch = useDispatch(); // For redux state change
-
+  const modalIsVisible = useSelector((state) => state.ui.modalIsVisible);
   const usernameRef = useRef();
   const passwordRef = useRef();
-
-  const [modalVisibility, setModalVisibility] = useState(false);
-
-  const closeModal = () => {
-    setModalVisibility(false);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -54,12 +49,16 @@ function Login() {
         );
         navigate("/home");
       })
-      .catch((err) => setModalVisibility(true));
+      .catch((err) => dispatch(uiActions.toggle()));
+  };
+
+  const closeModal = () => {
+    dispatch(uiActions.toggle());
   };
 
   return (
     <div className={classes.container}>
-      {modalVisibility && (
+      {modalIsVisible && (
         <Modal
           onClose={closeModal}
           title="Warning"

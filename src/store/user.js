@@ -13,6 +13,11 @@ const userSlice = createSlice({
       state.username = action.payload.username;
       state.token = action.payload.token;
     },
+    userLogout(state, action) {
+      state.userId = "";
+      state.username = "";
+      state.token = "";
+    },
   },
 });
 

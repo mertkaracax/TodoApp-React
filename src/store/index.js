@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./user";
+import uiSlice from "./ui";
 
 const store = configureStore({
-  reducer: { user: userSlice.reducer },
+  reducer: { user: userSlice.reducer, ui: uiSlice.reducer },
 });
 
 // Redux store durumunu kaydetme

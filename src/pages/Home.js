@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Home.module.css";
+import lightClasses from "./HomeLight.module.css";
 import { useSelector } from "react-redux";
 import Task from "../components/Task";
 import Dropdown from "../components/Dropdown";
@@ -13,6 +14,8 @@ function Home() {
   const [apiListener, setApiListener] = useState(0);
   const [tasks, setTasks] = useState();
   const [modalVisibility, setModelVisibility] = useState(false);
+
+  const theme = useSelector((state) => state.ui.theme);
 
   const openModal = () => {
     setModelVisibility(true);
@@ -44,7 +47,9 @@ function Home() {
   }, [apiListener]);
 
   return (
-    <div className={classes.container}>
+    <div
+      className={theme === "dark" ? classes.container : lightClasses.container}
+    >
       {modalVisibility && (
         <Modal
           onClose={closeModal}
@@ -76,7 +81,7 @@ function Home() {
           <div className={classes.profilePic}></div>
           <Dropdown
             buttonText={reduxState.user.username}
-            menuItems={["Profil", "Çıkış Yap"]}
+            menuItems={["Profile", "Change Theme", "Çıkış Yap"]}
           />
           {/* <div className={classes.profileName}>{token}</div> */}
         </div>

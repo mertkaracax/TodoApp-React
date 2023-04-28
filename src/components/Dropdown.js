@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import classes from "./Dropdown.module.css";
 import { useNavigate } from "react-router-dom";
+import { userActions } from "../store/user";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../store/ui";
 
 const Dropdown = ({ buttonText, menuItems }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -24,10 +28,13 @@ const Dropdown = ({ buttonText, menuItems }) => {
               className={classes.menuItem}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => {
-                if (item === "Çıkış Yap") {
-                  navigate("/");
-                } else if (item === "Profil") {
+                if (item === "Profile") {
                   navigate("/Home");
+                } else if (item === "Change Theme") {
+                  dispatch(uiActions.changeTheme());
+                } else if (item === "Çıkış Yap") {
+                  dispatch(userActions.userLogout());
+                  navigate("/");
                 }
               }}
             >
